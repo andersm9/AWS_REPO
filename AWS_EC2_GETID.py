@@ -2,9 +2,12 @@ from pprint import pprint
 from boto import ec2
 import time
 import boto
-ec2instance = boto.connect_ec2()
-reservation = ec2instance.run_instances(image_id='ami-70065467', instance_type='t1.micro', key_name='ec2-sample-key')
-time.sleep(30)
+
+#these will ad an instance
+#ec2instance = boto.connect_ec2()
+#reservation = ec2instance.run_instances(image_id='ami-70065467', instance_type='t1.micro', key_name='ec2-sample-key')
+#time.sleep(30)
+
 ec2conn = ec2.connection.EC2Connection()
 reservations = ec2conn.get_all_instances()
 instances = [i for r in reservations for i in r.instances]
@@ -28,4 +31,4 @@ for i in instances:
     #pprint(i._state)
     d = str(i._state)
     print d[0:]
-    break # remove this to list all instances
+    #break # remove this to list all instances
